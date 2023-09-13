@@ -414,7 +414,7 @@ def time_multi_coincidence(times, slide_step=0, slop=.003,
 
 
 def time_multi_coincidence_by_time_delay(times, skyloc, slide_step=0,
-                           slop = 0., pivot='H1', fixed='L1'):
+                           slop = 0.001, pivot='H1', fixed='L1'):
     """ Find multi detector coincidences.
 
     Parameters
@@ -448,7 +448,8 @@ def time_multi_coincidence_by_time_delay(times, skyloc, slide_step=0,
         d1 = Detector(ifo1)
         d2 = Detector(ifo2)
         # Should this be d2.time_delay_from_detector(d1... ?
-        return d2.time_delay_from_detector(d1, skyloc['ra'], skyloc['dec'], skyloc['t_gps'])
+        return d2.time_delay_from_detector(d1, skyloc['ra'], skyloc['dec'], skyloc['t_gps']) 
+        #TODO: swap skyloc t_gps with times array
 
     TWOEARTH = 0.085
     dt = delay(fixed, pivot, skyloc)
